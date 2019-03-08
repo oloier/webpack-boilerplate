@@ -1,3 +1,4 @@
-import '../styles/index.scss';
+import "../styles/style.styl"
+import "../styles/style.sass"
 
-console.log('webpack starterkit');
+console.log("webpack starterkit")
