@@ -2,6 +2,8 @@ const path = require("path")
 const webpack = require("webpack")
 const merge = require("webpack-merge")
 const miniCssExtractPlugin = require("mini-css-extract-plugin")
+const uglifyJsPlugin = require("uglifyjs-webpack-plugin")
+const optimizeCssAssetsPlugin = require("optimize-css-assets-webpack-plugin")
 const common = require("./webpack.common.js")
 
 module.exports = merge(common, {
@@ -33,10 +35,20 @@ module.exports = merge(common, {
 				test: /\.s?(a|c)ss/i,
 				use: [miniCssExtractPlugin.loader, "css-loader", "sass-loader"],
 			},
-			{
-				test: /\.styl$/,
-				loader: ["style-loader", "css-loader", "stylus-loader"],
-			},
+			// {
+			// 	test: /\.styl$/,
+			// 	loader: ["style-loader", "css-loader", "stylus-loader"],
+			// },
+		],
+	},
+	optimization: {
+		minimizer: [
+			new uglifyJsPlugin({
+				cache: true,
+				parallel: true,
+				sourceMap: true, // set to true if you want JS source maps
+			}),
+			new optimizeCssAssetsPlugin({}),
 		],
 	},
 })

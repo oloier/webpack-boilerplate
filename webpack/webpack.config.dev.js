@@ -34,13 +34,13 @@ module.exports = merge(common, {
 				loader: "babel-loader",
 			},
 			{
-				test: /\.styl$/,
-				loader: ["style-loader", "css-loader", "stylus-loader"],
-			},
-			{
 				test: /\.s?(a|c)ss$/i,
 				use: ["style-loader", "css-loader?sourceMap=true", "sass-loader"],
 			},
+			// {
+			// 	test: /\.styl$/,
+			// 	loader: ["style-loader", "css-loader", "stylus-loader"],
+			// },
 		],
 	},
 })
